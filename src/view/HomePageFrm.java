@@ -2,11 +2,9 @@ package view;
 
 
 import controller.Client;
-import java.awt.event.WindowAdapter;
+
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -17,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 
 /**
- *
  * @author Admin
  */
 public class HomePageFrm extends javax.swing.JFrame {
@@ -32,20 +29,19 @@ public class HomePageFrm extends javax.swing.JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         jLabel4.setText(Client.user.getNickname());
-        jLabel7.setText(Integer.toString(Client.user.getNumberOfwin()));
-        jLabel9.setText(Integer.toString(Client.user.getNumberOfGame()));
-        jLabel8.setIcon(new ImageIcon("assets/avatar/"+Client.user.getAvatar()+".jpg"));
-        jButton10.setIcon(new ImageIcon("assets/image/send2.png"));
-        jTextArea1.setEditable(false);
-        if(Client.user.getNumberOfGame()==0){
-            jLabel14.setText("-");
+        numberOfWinValue.setText(Integer.toString(Client.user.getNumberOfWin()));
+        numberOfGameValue.setText(Integer.toString(Client.user.getNumberOfGame()));
+        jLabel8.setIcon(new ImageIcon("assets/avatar/" + Client.user.getAvatar() + ".jpg"));
+        sendMessageButton.setIcon(new ImageIcon("assets/image/send2.png"));
+        messageTextArea.setEditable(false);
+        if (Client.user.getNumberOfGame() == 0) {
+            winRatioValue.setText("-");
+        } else {
+            winRatioValue.setText(String.format("%.2f", (float) Client.user.getNumberOfWin() / Client.user.getNumberOfGame() * 100) + "%");
         }
-        else{
-            jLabel14.setText(String.format("%.2f", (float)Client.user.getNumberOfwin()/Client.user.getNumberOfGame()*100)+"%");
-        }
-        jLabel16.setText(""+Client.user.getNumberOfDraw());
-        jLabel10.setText(""+(Client.user.getNumberOfGame()+Client.user.getNumberOfwin()*10));
-        jLabel12.setText(""+Client.user.getRank());
+        drawValue.setText("" + Client.user.getNumberOfDraw());
+        markValue.setText("" + (Client.user.getNumberOfGame() + Client.user.getNumberOfWin() * 10));
+        rankValue.setText("" + Client.user.getRank());
     }
 
     /**
@@ -58,36 +54,36 @@ public class HomePageFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        frameLabel = new javax.swing.JLabel();
+        createRoomButton = new javax.swing.JButton();
+        scoreBoardButton = new javax.swing.JButton();
+        findRoomButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        numberOfWinLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        numberOfWinValue = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        numberOfGameValue = new javax.swing.JLabel();
+        numberOfGameLabel = new javax.swing.JLabel();
+        markLabel = new javax.swing.JLabel();
+        markValue = new javax.swing.JLabel();
+        rankLabel = new javax.swing.JLabel();
+        rankValue = new javax.swing.JLabel();
+        winRatioLabel = new javax.swing.JLabel();
+        winRatioValue = new javax.swing.JLabel();
+        drawLabel = new javax.swing.JLabel();
+        drawValue = new javax.swing.JLabel();
+        scoreBotButton = new javax.swing.JButton();
+        exitGameButton = new javax.swing.JButton();
+        quickGameButton = new javax.swing.JButton();
+        playWithBotButton = new javax.swing.JButton();
+        friendListButton = new javax.swing.JButton();
+        goRoomButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
+        messageTextArea = new javax.swing.JTextArea();
+        messageInput = new javax.swing.JTextField();
+        sendMessageButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -102,28 +98,28 @@ public class HomePageFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Tekton Pro Ext", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Game Caro ");
+        frameLabel.setFont(new java.awt.Font("Tekton Pro Ext", 0, 24)); // NOI18N
+        frameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        frameLabel.setText("Game Caro ");
 
-        jButton1.setText("Tạo Phòng");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createRoomButton.setText("Tạo Phòng");
+        createRoomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createRoomButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Bảng xếp hạng");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        scoreBoardButton.setText("Bảng xếp hạng");
+        scoreBoardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                scoreBoardButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Tìm phòng");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        findRoomButton.setText("Tìm phòng");
+        findRoomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                findRoomButtonActionPerformed(evt);
             }
         });
 
@@ -141,46 +137,46 @@ public class HomePageFrm extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Số ván thắng");
+        numberOfWinLabel.setForeground(new java.awt.Color(255, 255, 255));
+        numberOfWinLabel.setText("Số ván thắng");
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("{day la Nick name}");
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("{day la so van thang}");
+        numberOfWinValue.setForeground(new java.awt.Color(255, 255, 255));
+        numberOfWinValue.setText("{day la so van thang}");
 
         jLabel8.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("{day la so van da choi}");
+        numberOfGameValue.setForeground(new java.awt.Color(255, 255, 255));
+        numberOfGameValue.setText("{day la so van da choi}");
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Số ván đã chơi");
+        numberOfGameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        numberOfGameLabel.setText("Số ván đã chơi");
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Điểm");
+        markLabel.setForeground(new java.awt.Color(255, 255, 255));
+        markLabel.setText("Điểm");
 
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("{day la diem}");
+        markValue.setForeground(new java.awt.Color(255, 255, 255));
+        markValue.setText("{day la diem}");
 
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Thứ hạng");
+        rankLabel.setForeground(new java.awt.Color(255, 255, 255));
+        rankLabel.setText("Thứ hạng");
 
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("{day la thu hang}");
+        rankValue.setForeground(new java.awt.Color(255, 255, 255));
+        rankValue.setText("{day la thu hang}");
 
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Tỉ lệ thắng");
+        winRatioLabel.setForeground(new java.awt.Color(255, 255, 255));
+        winRatioLabel.setText("Tỉ lệ thắng");
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("{day la ti le thang}");
+        winRatioValue.setForeground(new java.awt.Color(255, 255, 255));
+        winRatioValue.setText("{day la ti le thang}");
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Số ván hòa");
+        drawLabel.setForeground(new java.awt.Color(255, 255, 255));
+        drawLabel.setText("Số ván hòa");
 
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("{day la so van hoa}");
+        drawValue.setForeground(new java.awt.Color(255, 255, 255));
+        drawValue.setText("{day la so van hoa}");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,28 +189,28 @@ public class HomePageFrm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                            .addComponent(numberOfWinLabel)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(numberOfGameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(numberOfWinValue, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numberOfGameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(drawLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                            .addComponent(markLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(winRatioLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rankLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(markValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                    .addComponent(winRatioValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rankValue, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(drawValue, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -230,93 +226,93 @@ public class HomePageFrm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(jLabel9))
+                                .addComponent(numberOfGameValue))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)))
+                                .addComponent(numberOfGameLabel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3))
+                            .addComponent(numberOfWinValue)
+                            .addComponent(numberOfWinLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16))
+                            .addComponent(drawLabel)
+                            .addComponent(drawValue))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14))
+                            .addComponent(winRatioLabel)
+                            .addComponent(winRatioValue))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel6)))
+                            .addComponent(markValue)
+                            .addComponent(markLabel)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(rankLabel)
+                    .addComponent(rankValue))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Đăng xuất");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        scoreBotButton.setText("Đăng xuất");
+        scoreBotButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                scoreBotButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Thoát Game");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        exitGameButton.setText("Thoát Game");
+        exitGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                exitGameButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Chơi nhanh");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        quickGameButton.setText("Chơi nhanh");
+        quickGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                quickGameButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Chơi với máy");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        playWithBotButton.setText("Chơi với máy");
+        playWithBotButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                playWithBotButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Danh sách bạn bè");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        friendListButton.setText("Danh sách bạn bè");
+        friendListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                friendListButtonActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Vào phòng");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        goRoomButton.setText("Vào phòng");
+        goRoomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                goRoomButtonActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("<<Tin nhắn và tin tức>>\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        messageTextArea.setColumns(20);
+        messageTextArea.setRows(5);
+        messageTextArea.setText("<<Tin nhắn và tin tức>>\n");
+        jScrollPane1.setViewportView(messageTextArea);
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        messageInput.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                messageInputKeyPressed(evt);
             }
         });
 
-        jButton10.setText("Gửi");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        sendMessageButton.setText("Gửi");
+        sendMessageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                sendMessageButtonActionPerformed(evt);
             }
         });
 
@@ -327,61 +323,61 @@ public class HomePageFrm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(frameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(quickGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(goRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(createRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                            .addComponent(scoreBoardButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(findRoomButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(playWithBotButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                            .addComponent(scoreBotButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(friendListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exitGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(messageInput)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10)))
+                        .addComponent(sendMessageButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(frameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(jButton10))
+                    .addComponent(messageInput, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(sendMessageButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton6)
-                    .addComponent(jButton1))
+                    .addComponent(goRoomButton)
+                    .addComponent(quickGameButton)
+                    .addComponent(createRoomButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(findRoomButton)
+                    .addComponent(playWithBotButton)
+                    .addComponent(friendListButton))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton5))
+                    .addComponent(scoreBoardButton)
+                    .addComponent(scoreBotButton)
+                    .addComponent(exitGameButton))
                 .addGap(25, 25, 25))
         );
 
@@ -392,140 +388,132 @@ public class HomePageFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1AncestorMoved
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void createRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRoomButtonActionPerformed
         int res = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn đặt mật khẩu cho phòng không?", "Tạo phòng", JOptionPane.YES_NO_OPTION);
-        if(res==JOptionPane.YES_OPTION){
+        if (res == JOptionPane.YES_OPTION) {
             Client.closeView(Client.View.HOMEPAGE);
-            Client.openView(Client.View.CREATEROOMPASSWORD);
-        }
-        else if(res==JOptionPane.NO_OPTION){
+            Client.openView(Client.View.CREATE_ROOM_PASSWORD);
+        } else if (res == JOptionPane.NO_OPTION) {
             try {
-            Client.socketHandle.write("create-room,");
-            Client.closeView(Client.View.HOMEPAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                Client.socketHandle.write("create-room,");
+                Client.closeView(Client.View.HOMEPAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            }
         }
-        } 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_createRoomButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void findRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findRoomButtonActionPerformed
         try {
             Client.closeView(Client.View.HOMEPAGE);
-            Client.openView(Client.View.ROOMLIST);
+            Client.openView(Client.View.ROOM_LIST);
             Client.socketHandle.write("view-room-list,");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_findRoomButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void scoreBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreBoardButtonActionPerformed
         Client.openView(Client.View.RANK);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_scoreBoardButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void scoreBotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreBotButtonActionPerformed
         try {
-            Client.socketHandle.write("offline,"+Client.user.getID());
+            Client.socketHandle.write("offline," + Client.user.getID());
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
         Client.closeView(Client.View.HOMEPAGE);
         Client.openView(Client.View.LOGIN);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_scoreBotButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void exitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitGameButtonActionPerformed
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_exitGameButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void friendListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendListButtonActionPerformed
         Client.closeView(Client.View.HOMEPAGE);
-        Client.openView(Client.View.FRIENDLIST);
-    }//GEN-LAST:event_jButton8ActionPerformed
+        Client.openView(Client.View.FRIEND_LIST);
+    }//GEN-LAST:event_friendListButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void quickGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quickGameButtonActionPerformed
         Client.closeView(Client.View.HOMEPAGE);
-        Client.openView(Client.View.FINDROOM);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        Client.openView(Client.View.FIND_ROOM);
+    }//GEN-LAST:event_quickGameButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void playWithBotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playWithBotButtonActionPerformed
         // TODO add your handling code here:
-        Client.openView(Client.View.GAMEAI);
-    }//GEN-LAST:event_jButton7ActionPerformed
+        Client.openView(Client.View.GAME_AI);
+    }//GEN-LAST:event_playWithBotButtonActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        Client.openView(Client.View.ROOMNAMEFRM);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void goRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goRoomButtonActionPerformed
+        Client.openView(Client.View.ROOM_NAME_FRM);
+    }//GEN-LAST:event_goRoomButtonActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void sendMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMessageButtonActionPerformed
         sendMessage();
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_sendMessageButtonActionPerformed
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        if(evt.getKeyCode() == 10){
+    private void messageInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_messageInputKeyPressed
+        if (evt.getKeyCode() == 10) {
             sendMessage();
         }
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_messageInputKeyPressed
 
-    /**
-     * @param args the command line arguments
-     */
-    private void sendMessage(){
+    private void sendMessage() {
         try {
-            if (jTextField1.getText().isEmpty()) {
+            if (messageInput.getText().isEmpty()) {
                 throw new Exception("Vui lòng nhập nội dung tin nhắn");
             }
-            String temp = jTextArea1.getText();
-            temp += "Tôi: " + jTextField1.getText() + "\n";
-            jTextArea1.setText(temp);
-            Client.socketHandle.write("chat-server," + jTextField1.getText());
-            jTextField1.setText("");
-            jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            String temp = messageTextArea.getText();
+            temp += "Tôi: " + messageInput.getText() + "\n";
+            messageTextArea.setText(temp);
+            Client.socketHandle.write("chat-server," + messageInput.getText());
+            messageInput.setText("");
+            messageTextArea.setCaretPosition(messageTextArea.getDocument().getLength());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }
-    /**
-     * @param args the command line arguments
-     */
-    public void addMessage(String message){
-        String temp = jTextArea1.getText();
-        temp+=message+"\n";
-        jTextArea1.setText(temp);
-        jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+
+    public void addMessage(String message) {
+        String temp = messageTextArea.getText();
+        temp += message + "\n";
+        messageTextArea.setText(temp);
+        messageTextArea.setCaretPosition(messageTextArea.getDocument().getLength());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton createRoomButton;
+    private javax.swing.JLabel drawLabel;
+    private javax.swing.JLabel drawValue;
+    private javax.swing.JButton exitGameButton;
+    private javax.swing.JButton findRoomButton;
+    private javax.swing.JLabel frameLabel;
+    private javax.swing.JButton friendListButton;
+    private javax.swing.JButton goRoomButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel markLabel;
+    private javax.swing.JLabel markValue;
+    private javax.swing.JTextField messageInput;
+    private javax.swing.JTextArea messageTextArea;
+    private javax.swing.JLabel numberOfGameLabel;
+    private javax.swing.JLabel numberOfGameValue;
+    private javax.swing.JLabel numberOfWinLabel;
+    private javax.swing.JLabel numberOfWinValue;
+    private javax.swing.JButton playWithBotButton;
+    private javax.swing.JButton quickGameButton;
+    private javax.swing.JLabel rankLabel;
+    private javax.swing.JLabel rankValue;
+    private javax.swing.JButton scoreBoardButton;
+    private javax.swing.JButton scoreBotButton;
+    private javax.swing.JButton sendMessageButton;
+    private javax.swing.JLabel winRatioLabel;
+    private javax.swing.JLabel winRatioValue;
     // End of variables declaration//GEN-END:variables
 }

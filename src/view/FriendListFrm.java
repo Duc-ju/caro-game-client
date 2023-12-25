@@ -4,33 +4,31 @@
  * and open the template in the editor.
  */
 package view;
+
 import controller.Client;
+
 import java.io.IOException;
 import java.util.List;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+
 import model.User;
 
 /**
- *
  * @author Admin
  */
 public class FriendListFrm extends javax.swing.JFrame {
     private List<User> listFriend;
     private boolean isClicked;
-    private Thread thread;
     DefaultTableModel defaultTableModel;
+
     /**
      * Creates new form FriendListFrm
      */
     public FriendListFrm() {
         initComponents();
-        defaultTableModel = (DefaultTableModel) jTable1.getModel();
+        defaultTableModel = (DefaultTableModel) friendTable.getModel();
         this.setTitle("Caro Game Nhóm 5");
         this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
         this.setResizable(false);
@@ -40,16 +38,16 @@ public class FriendListFrm extends javax.swing.JFrame {
         requestUpdate();
         startThread();
     }
-    
-    public void stopAllThread(){
-       isClicked=true;
+
+    public void stopAllThread() {
+        isClicked = true;
     }
-    
-    public void startThread(){
-        thread = new Thread() {
+
+    public void startThread() {
+        Thread thread = new Thread() {
             @Override
             public void run() {
-                while (Client.friendListFrm.isDisplayable()&&!isClicked) {
+                while (Client.friendListFrm.isDisplayable() && !isClicked) {
                     try {
                         System.out.println("Xem danh sách bạn bè đang chạy!");
                         requestUpdate();
@@ -62,36 +60,36 @@ public class FriendListFrm extends javax.swing.JFrame {
         };
         thread.start();
     }
-    public void requestUpdate(){
+
+    public void requestUpdate() {
         try {
             Client.socketHandle.write("view-friend-list,");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }
-    public void updateFriendList(List<User> friends){
+
+    public void updateFriendList(List<User> friends) {
         listFriend = friends;
         defaultTableModel.setRowCount(0);
         ImageIcon icon;
-        for(User friend : listFriend){
-            if(!friend.isIsOnline()){
+        for (User friend : listFriend) {
+            if (!friend.isOnline()) {
                 icon = new ImageIcon("assets/icon/offline.png");
-            }
-            else if(friend.isIsPlaying()){
+            } else if (friend.isPlaying()) {
                 icon = new ImageIcon("assets/icon/swords-mini.png");
-            }
-            else{
+            } else {
                 icon = new ImageIcon("assets/icon/swords-1-mini.png");
             }
             defaultTableModel.addRow(new Object[]{
-                ""+friend.getID(),
-                friend.getNickname(),
-                icon
+                    "" + friend.getID(),
+                    friend.getNickname(),
+                    icon
             });
         }
     }
-    
-    
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,8 +100,8 @@ public class FriendListFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        frameLabel = new javax.swing.JLabel();
+        closeButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         Object[][] rows = {
         };
@@ -119,43 +117,43 @@ public class FriendListFrm extends javax.swing.JFrame {
                 }
             }
         };
-        jTable1 = new javax.swing.JTable();
+        friendTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Danh sách bạn bè");
+        frameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        frameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        frameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        frameLabel.setText("Danh sách bạn bè");
 
-        jButton1.setText("X");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeButton.setText("X");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                closeButtonActionPerformed(evt);
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTable1.setModel(model);
-        jTable1.setRowHeight(60);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        friendTable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        friendTable.setModel(model);
+        friendTable.setRowHeight(60);
+        friendTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                friendTableMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(240);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(240);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(240);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(120);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(120);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(120);
+        jScrollPane3.setViewportView(friendTable);
+        if (friendTable.getColumnModel().getColumnCount() > 0) {
+            friendTable.getColumnModel().getColumn(0).setMinWidth(60);
+            friendTable.getColumnModel().getColumn(0).setPreferredWidth(60);
+            friendTable.getColumnModel().getColumn(0).setMaxWidth(60);
+            friendTable.getColumnModel().getColumn(1).setMinWidth(240);
+            friendTable.getColumnModel().getColumn(1).setPreferredWidth(240);
+            friendTable.getColumnModel().getColumn(1).setMaxWidth(240);
+            friendTable.getColumnModel().getColumn(2).setMinWidth(120);
+            friendTable.getColumnModel().getColumn(2).setPreferredWidth(120);
+            friendTable.getColumnModel().getColumn(2).setMaxWidth(120);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -163,9 +161,9 @@ public class FriendListFrm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(closeButton)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(frameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,9 +172,9 @@ public class FriendListFrm extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(closeButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(frameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -196,47 +194,43 @@ public class FriendListFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Client.closeView(Client.View.FRIENDLIST);
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        Client.closeView(Client.View.FRIEND_LIST);
         Client.openView(Client.View.HOMEPAGE);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_closeButtonActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void friendTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_friendTableMouseClicked
         try {
-            if(jTable1.getSelectedRow()==-1) return;
-            User friend = listFriend.get(jTable1.getSelectedRow());
-            if(!friend.isIsOnline()){
+            if (friendTable.getSelectedRow() == -1) return;
+            User friend = listFriend.get(friendTable.getSelectedRow());
+            if (!friend.isOnline()) {
                 throw new Exception("Người chơi không online");
             }
-            if(friend.isIsPlaying()){
+            if (friend.isPlaying()) {
                 throw new Exception("Người chơi đang trong trận đấu");
             }
             isClicked = true;
             int res = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn thách đấu người bạn này không", "Xác nhận thách đầu", JOptionPane.YES_NO_OPTION);
-            if(res == JOptionPane.YES_OPTION){
+            if (res == JOptionPane.YES_OPTION) {
                 Client.closeAllViews();
-                Client.openView(Client.View.GAMENOTICE, "Thách đấu", "Đang chờ phản hồi từ đối thủ");
-                Client.socketHandle.write("duel-request,"+friend.getID());
-            }
-            else{
+                Client.openView(Client.View.GAME_NOTICE, "Thách đấu", "Đang chờ phản hồi từ đối thủ");
+                Client.socketHandle.write("duel-request," + friend.getID());
+            } else {
                 isClicked = false;
                 startThread();
             }
 
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_friendTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton closeButton;
+    private javax.swing.JLabel frameLabel;
+    private javax.swing.JTable friendTable;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

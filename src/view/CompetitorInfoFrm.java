@@ -7,20 +7,20 @@ package view;
 
 
 import controller.Client;
+
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
 import model.User;
 
 /**
- *
  * @author Admin
  */
 public class CompetitorInfoFrm extends javax.swing.JFrame {
     private boolean isFriend;
     private User user;
+
     /**
      * Creates new form CompetitorInfoFrm
      */
@@ -33,38 +33,38 @@ public class CompetitorInfoFrm extends javax.swing.JFrame {
             this.setResizable(false);
             this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             this.setLocationRelativeTo(null);
-            jLabel6.setIcon(new ImageIcon("assets/avatar/"+user.getAvatar()+".jpg"));
-            jLabel7.setText(user.getNickname());
-            jLabel8.setText(""+user.getNumberOfGame());
-            jLabel9.setText(""+user.getNumberOfwin());
-            jLabel17.setText(""+user.getNumberOfDraw());
-            jLabel13.setText(""+user.getRank());
-            if(user.getNumberOfGame()==0){
-                jLabel15.setText("-");
+            jLabel6.setIcon(new ImageIcon("assets/avatar/" + user.getAvatar() + ".jpg"));
+            nicknameValue.setText(user.getNickname());
+            numberOfGameValue.setText("" + user.getNumberOfGame());
+            numberOfWinValue.setText("" + user.getNumberOfWin());
+            numberOfDrawValue.setText("" + user.getNumberOfDraw());
+            rankValue.setText("" + user.getRank());
+            if (user.getNumberOfGame() == 0) {
+                winRatioValue.setText("-");
+            } else {
+                winRatioValue.setText(String.format("%.2f", (float) user.getNumberOfWin() / user.getNumberOfGame() * 100) + "%");
             }
-            else{
-                jLabel15.setText(String.format("%.2f",(float)user.getNumberOfwin()/user.getNumberOfGame()*100)+"%");
-            }
-            jLabel12.setText(""+(user.getNumberOfwin()*10+user.getNumberOfGame()));
-            Client.socketHandle.write("check-friend,"+user.getID());
+            markValue.setText("" + (user.getNumberOfWin() * 10 + user.getNumberOfGame()));
+            Client.socketHandle.write("check-friend," + user.getID());
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }
-    public void checkFriend(boolean isFriend){
+
+    public void checkFriend(boolean isFriend) {
         this.isFriend = isFriend;
-        if(isFriend){
+        if (isFriend) {
             jButton1.setIcon(new ImageIcon("assets/icon/friendship.png"));
             jButton1.setToolTipText("Bạn bè");
-            jLabel5.setText("Bạn bè");
-            
-        }
-        else{
+            isFriendLabel.setText("Bạn bè");
+
+        } else {
             jButton1.setIcon(new ImageIcon("assets/icon/add-friend.png"));
             jButton1.setToolTipText("Click để gửi yêu cầu kết bạn");
-            jLabel5.setText("Kết bạn để chơi cùng nhau dễ dàng hơn");
+            isFriendLabel.setText("Kết bạn để chơi cùng nhau dễ dàng hơn");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,46 +75,46 @@ public class CompetitorInfoFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        frameLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        nicknameLabel = new javax.swing.JLabel();
+        numberOfGameLabel = new javax.swing.JLabel();
+        numberOfWinLabel = new javax.swing.JLabel();
+        isFriendLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        nicknameValue = new javax.swing.JLabel();
+        numberOfGameValue = new javax.swing.JLabel();
+        numberOfWinValue = new javax.swing.JLabel();
+        markLabel = new javax.swing.JLabel();
+        rankLabel = new javax.swing.JLabel();
+        markValue = new javax.swing.JLabel();
+        rankValue = new javax.swing.JLabel();
+        winRatioLabel = new javax.swing.JLabel();
+        winRatioValue = new javax.swing.JLabel();
+        numberOfDrawLabel = new javax.swing.JLabel();
+        numberOfDrawValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Thông tin đối thủ");
+        frameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        frameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        frameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        frameLabel.setText("Thông tin đối thủ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(frameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(frameLabel)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -124,74 +124,74 @@ public class CompetitorInfoFrm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Nickname");
+        nicknameLabel.setText("Nickname");
 
-        jLabel3.setText("Số ván chơi");
+        numberOfGameLabel.setText("Số ván chơi");
 
-        jLabel4.setText("Số ván thắng");
+        numberOfWinLabel.setText("Số ván thắng");
 
-        jLabel5.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Các bạn hiện đang là bạn bè");
+        isFriendLabel.setForeground(new java.awt.Color(0, 51, 255));
+        isFriendLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        isFriendLabel.setText("Các bạn hiện đang là bạn bè");
 
-        jLabel7.setText("{nickname}");
+        nicknameValue.setText("{nickname}");
 
-        jLabel8.setText("{sovachoi}");
+        numberOfGameValue.setText("{sovachoi}");
 
-        jLabel9.setText("{sovanthang}");
+        numberOfWinValue.setText("{sovanthang}");
 
-        jLabel10.setText("Điểm");
+        markLabel.setText("Điểm");
 
-        jLabel11.setText("Thứ hạng");
+        rankLabel.setText("Thứ hạng");
 
-        jLabel12.setText("{diem}");
+        markValue.setText("{diem}");
 
-        jLabel13.setText("{thuhang}");
+        rankValue.setText("{thuhang}");
 
-        jLabel14.setText("Tỉ lệ thắng");
+        winRatioLabel.setText("Tỉ lệ thắng");
 
-        jLabel15.setText("{tillethang}");
+        winRatioValue.setText("{tillethang}");
 
-        jLabel16.setText("Số ván hòa");
+        numberOfDrawLabel.setText("Số ván hòa");
 
-        jLabel17.setText("{sovanhoa}");
+        numberOfDrawValue.setText("{sovanhoa}");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(isFriendLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberOfGameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberOfWinLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nicknameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(33, 33, 33))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                                .addComponent(winRatioLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rankLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
                             .addGap(35, 35, 35)))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(markLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberOfDrawLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(numberOfWinValue, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                        .addComponent(numberOfGameValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(winRatioValue, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rankValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(markValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(nicknameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberOfDrawValue, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,36 +204,36 @@ public class CompetitorInfoFrm extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7))
+                    .addComponent(nicknameLabel)
+                    .addComponent(nicknameValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel8))
+                    .addComponent(numberOfGameLabel)
+                    .addComponent(numberOfGameValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel9))
+                    .addComponent(numberOfWinLabel)
+                    .addComponent(numberOfWinValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17))
+                    .addComponent(numberOfDrawLabel)
+                    .addComponent(numberOfDrawValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14)
+                        .addComponent(winRatioLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
+                        .addComponent(markLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11))
+                        .addComponent(rankLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel15)
+                        .addComponent(winRatioValue)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
+                        .addComponent(markValue)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13)))
+                        .addComponent(rankValue)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(isFriendLabel)
                 .addContainerGap())
         );
 
@@ -241,14 +241,13 @@ public class CompetitorInfoFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(isFriend){
+        if (isFriend) {
             JOptionPane.showMessageDialog(rootPane, "Bạn và đối thủ đang là bạn bè");
-        }
-        else{
+        } else {
             int res = JOptionPane.showConfirmDialog(rootPane, "Bạn đồng ý gửi lời mời kết bạn tới đối thủ chứ", "Xác nhận yêu cầu kết bạn", JOptionPane.YES_NO_OPTION);
-            if(res==JOptionPane.YES_OPTION){
+            if (res == JOptionPane.YES_OPTION) {
                 try {
-                    Client.socketHandle.write("make-friend,"+user.getID());
+                    Client.socketHandle.write("make-friend," + user.getID());
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(rootPane, ex.getMessage());
                 }
@@ -258,24 +257,24 @@ public class CompetitorInfoFrm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel frameLabel;
+    private javax.swing.JLabel isFriendLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel markLabel;
+    private javax.swing.JLabel markValue;
+    private javax.swing.JLabel nicknameLabel;
+    private javax.swing.JLabel nicknameValue;
+    private javax.swing.JLabel numberOfDrawLabel;
+    private javax.swing.JLabel numberOfDrawValue;
+    private javax.swing.JLabel numberOfGameLabel;
+    private javax.swing.JLabel numberOfGameValue;
+    private javax.swing.JLabel numberOfWinLabel;
+    private javax.swing.JLabel numberOfWinValue;
+    private javax.swing.JLabel rankLabel;
+    private javax.swing.JLabel rankValue;
+    private javax.swing.JLabel winRatioLabel;
+    private javax.swing.JLabel winRatioValue;
     // End of variables declaration//GEN-END:variables
 }

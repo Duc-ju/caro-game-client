@@ -1,13 +1,14 @@
 package view;
 
 import controller.Client;
-import java.awt.Color;
+
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 import model.Point;
 import model.XOButton;
 
@@ -16,22 +17,21 @@ import model.XOButton;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
- *
  * @author Admin
  */
 public class GameAIFrm extends javax.swing.JFrame {
 
-    private int row =20;
-    private int col = 20;
-    public XOButton[][] Buttons = new XOButton[col][row];
-    private ArrayList<Point> availablesPoint = new ArrayList<Point>();
+    private static final int ROW_COUNT = 20;
+    private static final int COL_COUNT = 20;
+    public XOButton[][] Buttons = new XOButton[COL_COUNT][ROW_COUNT];
     private static final int winScore = 100000000;
     private int gameNumber = 0;
     private int userWin = 0;
     private int aIWin = 0;
     XOButton preButton;
-    
+
     public GameAIFrm() {
         initComponents();
         this.setTitle("Caro Game Nhóm 5");
@@ -41,58 +41,51 @@ public class GameAIFrm extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
         this.setResizable(false);
         this.getContentPane().setLayout(null);
-        jLabel12.setText(Client.user.getNickname());
-        jLabel13.setText(Integer.toString(Client.user.getNumberOfGame()));
-        jLabel14.setText(Integer.toString(Client.user.getNumberOfwin()));
-        jLabel19.setIcon(new ImageIcon("assets/game/"+Client.user.getAvatar()+".jpg"));
-        jLabel22.setIcon(new ImageIcon("assets/game/swords-1.png"));
-        jLabel3.setIcon(new ImageIcon("assets/image/x3.jpg"));
-        jLabel5.setIcon(new ImageIcon("assets/image/o3.jpg"));
-        jButton3.setIcon(new ImageIcon("assets/image/ai.png"));
+        playerNicknameValue.setText(Client.user.getNickname());
+        playerNumberOfGameValue.setText(Integer.toString(Client.user.getNumberOfGame()));
+        playerNumberOfWinValue.setText(Integer.toString(Client.user.getNumberOfWin()));
+        playerButtonImage.setIcon(new ImageIcon("assets/game/" + Client.user.getAvatar() + ".jpg"));
+        vsIcon.setIcon(new ImageIcon("assets/game/swords-1.png"));
+        playerCurrentPosition.setIcon(new ImageIcon("assets/image/x3.jpg"));
+        competitorCurrentPosition.setIcon(new ImageIcon("assets/image/o3.jpg"));
+        competitorButtonImage.setIcon(new ImageIcon("assets/image/ai.png"));
+
         //Set layout dạng lưới cho panel chứa button
-        jPanel1.setLayout(new GridLayout(20, 20));
+        gameBoardPanel.setLayout(new GridLayout(20, 20));
+
         //Setup play button
         for (int i = 0; i < Buttons.length; i++) {
             for (int j = 0; j < Buttons.length; j++) {
                 Point point = new Point(i, j);
                 Buttons[i][j] = new XOButton(i, j);
-                Buttons[i][j].addMouseListener( new MouseListener() {
+                Buttons[i][j].addMouseListener(new MouseListener() {
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        // TODO Auto-generated method stub
                         handleClickButton(point);
                     }
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        // TODO Auto-generated method stub
-
                     }
 
                     @Override
                     public void mouseExited(MouseEvent e) {
-                        // TODO Auto-generated method stub
-
                     }
 
                     @Override
                     public void mouseEntered(MouseEvent e) {
-                        
                     }
 
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        // TODO Auto-generated method stub
-
                     }
                 });
-                jPanel1.add(Buttons[i][j]);
-                availablesPoint.add(point);
+                gameBoardPanel.add(Buttons[i][j]);
             }
         }
         gameNumber++;
-        preButton=null;
+        preButton = null;
     }
 
     /**
@@ -108,44 +101,44 @@ public class GameAIFrm extends javax.swing.JFrame {
         jFrame2 = new javax.swing.JFrame();
         jFrame3 = new javax.swing.JFrame();
         jFrame4 = new javax.swing.JFrame();
-        jLabel2 = new javax.swing.JLabel();
-        yourTurnJLabel3 = new javax.swing.JLabel();
+        playerNumberOfWinLabel = new javax.swing.JLabel();
+        yourTurnJLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        playerNickNameLabel = new javax.swing.JLabel();
+        playerNumberOfGameLabel = new javax.swing.JLabel();
+        competitorNumberOfWinLabel = new javax.swing.JLabel();
+        competitorNicknameLabel = new javax.swing.JLabel();
+        competitorNumberOfGameLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        roomMessageTextArea = new javax.swing.JTextArea();
+        playerNicknameValue = new javax.swing.JLabel();
+        playerNumberOfGameValue = new javax.swing.JLabel();
+        playerNumberOfWinValue = new javax.swing.JLabel();
+        competitorNicknameValue = new javax.swing.JLabel();
+        competitorNumberOfGameValue = new javax.swing.JLabel();
+        competitorNumberOfWinValue = new javax.swing.JLabel();
+        gameBoardPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        playerLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        competitorLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        botLabel = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         compretitorTurnJLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        playerCurrentPosition = new javax.swing.JLabel();
+        competitorCurrentPosition = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        playerButtonImage = new javax.swing.JLabel();
+        vsIcon = new javax.swing.JLabel();
+        competitorButtonImage = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mainMenu = new javax.swing.JMenu();
+        newGameMenuItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        helpMenuItem = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -194,56 +187,56 @@ public class GameAIFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
 
-        jLabel2.setText("Số ván thắng");
+        playerNumberOfWinLabel.setText("Số ván thắng");
 
-        yourTurnJLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        yourTurnJLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        yourTurnJLabel3.setText("Bạn");
+        yourTurnJLabel.setForeground(new java.awt.Color(255, 0, 0));
+        yourTurnJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        yourTurnJLabel.setText("Bạn");
 
-        jLabel8.setText("Nickname");
+        playerNickNameLabel.setText("Nickname");
 
-        jLabel4.setText("Số ván chơi");
+        playerNumberOfGameLabel.setText("Số ván chơi");
 
-        jLabel9.setText("Số ván thắng");
+        competitorNumberOfWinLabel.setText("Số ván thắng");
 
-        jLabel10.setText("Nickname");
+        competitorNicknameLabel.setText("Nickname");
 
-        jLabel11.setText("Số ván chơi");
+        competitorNumberOfGameLabel.setText("Số ván chơi");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        roomMessageTextArea.setColumns(20);
+        roomMessageTextArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        roomMessageTextArea.setRows(5);
+        jScrollPane1.setViewportView(roomMessageTextArea);
 
-        jLabel12.setText("{nickname}");
+        playerNicknameValue.setText("{nickname}");
 
-        jLabel13.setText("{sovanchoi}");
+        playerNumberOfGameValue.setText("{sovanchoi}");
 
-        jLabel14.setText("{sovanthang}");
+        playerNumberOfWinValue.setText("{sovanthang}");
 
-        jLabel15.setText("Máy");
+        competitorNicknameValue.setText("Máy");
 
-        jLabel16.setText("Nhiều lắm");
+        competitorNumberOfGameValue.setText("Nhiều lắm");
 
-        jLabel17.setText("Nhiều lắm");
+        competitorNumberOfWinValue.setText("Nhiều lắm");
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        gameBoardPanel.setBackground(new java.awt.Color(102, 102, 102));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout gameBoardPanelLayout = new javax.swing.GroupLayout(gameBoardPanel);
+        gameBoardPanel.setLayout(gameBoardPanelLayout);
+        gameBoardPanelLayout.setHorizontalGroup(
+            gameBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 556, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        gameBoardPanelLayout.setVerticalGroup(
+            gameBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Bạn");
+        playerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        playerLabel.setText("Bạn");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -251,22 +244,22 @@ public class GameAIFrm extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(playerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(playerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
         jPanel3.setForeground(new java.awt.Color(102, 102, 102));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Đối thủ");
+        competitorLabel.setForeground(new java.awt.Color(255, 255, 255));
+        competitorLabel.setText("Đối thủ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -274,18 +267,18 @@ public class GameAIFrm extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(competitorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(173, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(competitorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel4.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Chơi với máy");
+        botLabel.setForeground(new java.awt.Color(255, 255, 255));
+        botLabel.setText("Chơi với máy");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -293,16 +286,16 @@ public class GameAIFrm extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(botLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Tỉ số:  0-0");
+        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreLabel.setText("Tỉ số:  0-0");
 
         jPanel5.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -321,17 +314,17 @@ public class GameAIFrm extends javax.swing.JFrame {
         compretitorTurnJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         compretitorTurnJLabel.setText("Máy");
 
-        jLabel3.setText("x/o");
+        playerCurrentPosition.setText("x/o");
 
-        jLabel5.setText("x/o");
+        competitorCurrentPosition.setText("x/o");
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel19.setBackground(new java.awt.Color(102, 102, 102));
+        playerButtonImage.setBackground(new java.awt.Color(102, 102, 102));
 
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        competitorButtonImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                competitorButtonImageActionPerformed(evt);
             }
         });
 
@@ -343,58 +336,58 @@ public class GameAIFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(vsIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(playerButtonImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(competitorButtonImage, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(playerButtonImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(competitorButtonImage, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Menu");
-        jMenu1.setToolTipText("");
+        mainMenu.setText("Menu");
+        mainMenu.setToolTipText("");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setText("Game mới");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        newGameMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        newGameMenuItem.setText("Game mới");
+        newGameMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                newGameMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        mainMenu.add(newGameMenuItem);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        jMenuItem2.setText("Thoát");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        exitMenuItem.setText("Thoát");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                exitMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        mainMenu.add(exitMenuItem);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mainMenu);
 
-        jMenu2.setText("Help");
+        helpMenu.setText("Help");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem3.setText("Trợ giúp");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        helpMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        helpMenuItem.setText("Trợ giúp");
+        helpMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                helpMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        helpMenu.add(helpMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(helpMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -404,17 +397,6 @@ public class GameAIFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,21 +405,21 @@ public class GameAIFrm extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(playerNumberOfWinLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(26, 26, 26)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(playerNumberOfWinValue, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(competitorNicknameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(39, 39, 39)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(competitorNicknameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(competitorNumberOfGameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(competitorNumberOfWinLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(27, 27, 27)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(competitorNumberOfGameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(competitorNumberOfWinValue, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -445,24 +427,34 @@ public class GameAIFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(playerCurrentPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(scoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(competitorCurrentPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(playerNumberOfGameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(playerNickNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel13)))
+                                            .addComponent(playerNicknameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(playerNumberOfGameValue)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(yourTurnJLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(yourTurnJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(159, 159, 159)
                                         .addComponent(compretitorTurnJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(gameBoardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,30 +465,30 @@ public class GameAIFrm extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(playerNickNameLabel)
+                            .addComponent(playerNicknameValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel13))
+                            .addComponent(playerNumberOfGameLabel)
+                            .addComponent(playerNumberOfGameValue))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel14))
+                            .addComponent(playerNumberOfWinLabel)
+                            .addComponent(playerNumberOfWinValue))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel15))
+                            .addComponent(competitorNicknameLabel)
+                            .addComponent(competitorNicknameValue))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel16))
+                            .addComponent(competitorNumberOfGameLabel)
+                            .addComponent(competitorNumberOfGameValue))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel17))))
+                            .addComponent(competitorNumberOfWinLabel)
+                            .addComponent(competitorNumberOfWinValue))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -505,39 +497,37 @@ public class GameAIFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(competitorCurrentPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scoreLabel)
+                            .addComponent(playerCurrentPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(compretitorTurnJLabel)
-                    .addComponent(yourTurnJLabel3))
+                    .addComponent(yourTurnJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(gameBoardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         //for(int i=0; i<5; i++){
             //    for(int j=0;j<5;j++){
-                //        jPanel1.add(button[i][j]);
+                //        gameBoardPanel.add(button[i][j]);
                 //    }
             //}
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameMenuItemActionPerformed
+    }//GEN-LAST:event_newGameMenuItemActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+    private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuItemActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Luật chơi: luật quốc tế 5 nước chặn 2 đầu\n"
                 + "Hai người chơi luân phiên nhau chơi trước\n"
                 + "Người chơi trước đánh X, người chơi sau đánh O\n"
@@ -546,15 +536,16 @@ public class GameAIFrm extends javax.swing.JFrame {
                 + "Với mỗi ván chơi bạn có thêm 1 điểm, nếu hòa bạn được thêm 5 điểm,\n"
                 + "nếu thắng bạn được thêm 10 điểm\n"
                 + "Chúc bạn chơi game vui vẻ");
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_helpMenuItemActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void competitorButtonImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_competitorButtonImageActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_competitorButtonImageActionPerformed
 
-    private void updateScore(){
-        jLabel20.setText("Tỉ số: "+userWin+"-"+aIWin);
+    private void updateScore() {
+        scoreLabel.setText("Tỉ số: " + userWin + "-" + aIWin);
     }
+
     private void handleClickButton(Point point) {
 
         // TODO: CALC LOGIC HERE
@@ -588,16 +579,16 @@ public class GameAIFrm extends javax.swing.JFrame {
         }
     }
 
-    private void newGame(){
+    private void newGame() {
         for (int i = 0; i < Buttons.length; i++) {
             for (int j = 0; j < Buttons.length; j++) {
                 Buttons[i][j].resetState();
             }
         }
-        
+
         gameNumber++;
         if (gameNumber % 2 == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Máy đi trước", "Ván mới",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Máy đi trước", "Ván mới", JOptionPane.INFORMATION_MESSAGE);
             Buttons[9][9].setState(false);
             Buttons[9][9].setEnabled(false);
 
@@ -605,25 +596,25 @@ public class GameAIFrm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Bạn đã thua");
                 newGame();
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn đi trước", "Ván mới", JOptionPane.INFORMATION_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Bạn đi trước", "Ván mới",JOptionPane.INFORMATION_MESSAGE);
-        }
     }
-    
-    private void displayUserWin(){
-        String tmp = jTextArea1.getText();
-        tmp+="--Bạn đã thắng, tỉ số hiện tại là "+userWin+"-"+aIWin+"--\n";
-        jTextArea1.setText(tmp);
-        jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+
+    private void displayUserWin() {
+        String tmp = roomMessageTextArea.getText();
+        tmp += "--Bạn đã thắng, tỉ số hiện tại là " + userWin + "-" + aIWin + "--\n";
+        roomMessageTextArea.setText(tmp);
+        roomMessageTextArea.setCaretPosition(roomMessageTextArea.getDocument().getLength());
     }
-    private void displayAIWin(){
-        String tmp = jTextArea1.getText();
-        tmp+="--Máy thắng, tỉ số hiện tại là "+userWin+"-"+aIWin+"--\n";
-        jTextArea1.setText(tmp);
-        jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+
+    private void displayAIWin() {
+        String tmp = roomMessageTextArea.getText();
+        tmp += "--Máy thắng, tỉ số hiện tại là " + userWin + "-" + aIWin + "--\n";
+        roomMessageTextArea.setText(tmp);
+        roomMessageTextArea.setCaretPosition(roomMessageTextArea.getDocument().getLength());
     }
-    
+
 
     public int[] calcNextMove(int depth) {
         int[][] board = getMatrixBoard();
@@ -659,9 +650,9 @@ public class GameAIFrm extends javax.swing.JFrame {
 
     public int[][] playNextMove(int[][] board, int[] move, boolean isUserTurn) {
         int i = move[0], j = move[1];
-        int[][] newBoard = new int[row][col];
-        for (int h = 0; h < row; h++) {
-            for (int k = 0; k < col; k++) {
+        int[][] newBoard = new int[ROW_COUNT][COL_COUNT];
+        for (int h = 0; h < ROW_COUNT; h++) {
+            for (int k = 0; k < COL_COUNT; k++) {
                 newBoard[h][k] = board[h][k];
             }
         }
@@ -711,17 +702,13 @@ public class GameAIFrm extends javax.swing.JFrame {
 
     public Object[] minimaxSearchAB(int depth, int[][] board, boolean max, double alpha, double beta) {
         if (depth == 0) {
-            Object[] x = {evaluateBoardForWhite(board, !max), null, null};
-            return x;
+            return new Object[]{evaluateBoardForWhite(board, !max), null, null};
         }
 
         ArrayList<int[]> allPossibleMoves = generateMoves(board);
 
-        if (allPossibleMoves.size() == 0) {
-
-            Object[] x = {evaluateBoardForWhite(board, !max), null, null};
-
-            return x;
+        if (allPossibleMoves.isEmpty()) {
+            return new Object[]{evaluateBoardForWhite(board, !max), null, null};
         }
 
         Object[] bestMove = new Object[3];
@@ -730,10 +717,10 @@ public class GameAIFrm extends javax.swing.JFrame {
             bestMove[0] = -1.0;
 
             for (int[] move : allPossibleMoves) {
+
                 // Chơi thử với move hiện tại
                 int[][] dummyBoard = playNextMove(board, move, false);
-
-                Object[] tempMove = minimaxSearchAB(depth - 1, dummyBoard, !max, alpha, beta);
+                Object[] tempMove = minimaxSearchAB(depth - 1, dummyBoard, false, alpha, beta);
 
                 // Cập nhật alpha
                 if ((Double) (tempMove[0]) > alpha) {
@@ -757,7 +744,7 @@ public class GameAIFrm extends javax.swing.JFrame {
             for (int[] move : allPossibleMoves) {
                 int[][] dummyBoard = playNextMove(board, move, true);
 
-                Object[] tempMove = minimaxSearchAB(depth - 1, dummyBoard, !max, alpha, beta);
+                Object[] tempMove = minimaxSearchAB(depth - 1, dummyBoard, true, alpha, beta);
 
                 // Cập nhật beta
                 if (((Double) tempMove[0]) < beta) {
@@ -856,7 +843,7 @@ public class GameAIFrm extends javax.swing.JFrame {
 
     }
 
-    // Đánh giá bàn cờ dựa trên tổng số điểm hàng ngan, hàng dọc, và 2 đường chéo
+    // Đánh giá bàn cờ dựa trên tổng số điểm hàng ngang, hàng dọc, và 2 đường chéo
     public int getScore(int[][] board, boolean forX, boolean blacksTurn) {
 
         return evaluateHorizontal(board, forX, blacksTurn)
@@ -951,8 +938,8 @@ public class GameAIFrm extends javax.swing.JFrame {
         }
         return score;
     }
-    // Hàm tính toán 2 đường chéo tương tự như hàng ngan
 
+    // Hàm tính toán 2 đường chéo tương tự như hàng ngang
     public static int evaluateDiagonal(int[][] boardMatrix, boolean forX, boolean playersTurn) {
 
         int consecutive = 0;
@@ -1090,7 +1077,7 @@ public class GameAIFrm extends javax.swing.JFrame {
     }
 
     public int[][] getMatrixBoard() {
-        int matrix[][] = new int[row][col];
+        int[][] matrix = new int[ROW_COUNT][COL_COUNT];
         for (int i = 0; i < Buttons.length; i++) {
             for (int j = 0; j < Buttons.length; j++) {
                 int value = Buttons[i][j].value;
@@ -1102,48 +1089,48 @@ public class GameAIFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel botLabel;
+    private javax.swing.JButton competitorButtonImage;
+    private javax.swing.JLabel competitorCurrentPosition;
+    private javax.swing.JLabel competitorLabel;
+    private javax.swing.JLabel competitorNicknameLabel;
+    private javax.swing.JLabel competitorNicknameValue;
+    private javax.swing.JLabel competitorNumberOfGameLabel;
+    private javax.swing.JLabel competitorNumberOfGameValue;
+    private javax.swing.JLabel competitorNumberOfWinLabel;
+    private javax.swing.JLabel competitorNumberOfWinValue;
     private javax.swing.JLabel compretitorTurnJLabel;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JPanel gameBoardPanel;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
     private javax.swing.JFrame jFrame4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel yourTurnJLabel3;
+    private javax.swing.JMenu mainMenu;
+    private javax.swing.JMenuItem newGameMenuItem;
+    private javax.swing.JLabel playerButtonImage;
+    private javax.swing.JLabel playerCurrentPosition;
+    private javax.swing.JLabel playerLabel;
+    private javax.swing.JLabel playerNickNameLabel;
+    private javax.swing.JLabel playerNicknameValue;
+    private javax.swing.JLabel playerNumberOfGameLabel;
+    private javax.swing.JLabel playerNumberOfGameValue;
+    private javax.swing.JLabel playerNumberOfWinLabel;
+    private javax.swing.JLabel playerNumberOfWinValue;
+    private javax.swing.JTextArea roomMessageTextArea;
+    private javax.swing.JLabel scoreLabel;
+    private javax.swing.JLabel vsIcon;
+    private javax.swing.JLabel yourTurnJLabel;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -64,13 +64,13 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="mainMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Menu"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="newGameMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+F1"/>
@@ -78,10 +78,10 @@
                 <Property name="text" type="java.lang.String" value="Game m&#x1edb;i"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newGameMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+F4"/>
@@ -89,17 +89,17 @@
                 <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="helpMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+F2"/>
@@ -107,7 +107,7 @@
                 <Property name="text" type="java.lang.String" value="Tr&#x1ee3; gi&#xfa;p"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="helpMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -149,24 +149,24 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel2" min="-2" pref="92" max="-2" attributes="0"/>
+                                      <Component id="playerNumberOfWinLabel" min="-2" pref="92" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Component id="playerNumberOfWinValue" min="-2" pref="63" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel10" min="-2" pref="78" max="-2" attributes="0"/>
+                                      <Component id="competitorNicknameLabel" min="-2" pref="78" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" min="-2" pref="101" max="-2" attributes="0"/>
+                                      <Component id="competitorNicknameValue" min="-2" pref="101" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel11" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="competitorNumberOfGameLabel" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="competitorNumberOfWinLabel" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel16" min="-2" pref="74" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" min="-2" pref="76" max="-2" attributes="0"/>
+                                          <Component id="competitorNumberOfGameValue" min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="competitorNumberOfWinValue" min="-2" pref="76" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -181,14 +181,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="playerCurrentPosition" min="-2" pref="28" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel20" min="-2" pref="159" max="-2" attributes="0"/>
+                                      <Component id="scoreLabel" min="-2" pref="159" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="competitorCurrentPosition" min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -197,17 +197,17 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel4" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
-                                          <Component id="jLabel8" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
+                                          <Component id="playerNumberOfGameLabel" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                                          <Component id="playerNickNameLabel" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel12" min="-2" pref="103" max="-2" attributes="0"/>
-                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                          <Component id="playerNicknameValue" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="playerNumberOfGameValue" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="yourTurnJLabel3" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="yourTurnJLabel" min="-2" pref="81" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                                       <Component id="compretitorTurnJLabel" min="-2" pref="98" max="-2" attributes="0"/>
                                   </Group>
@@ -219,7 +219,7 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="gameBoardPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -232,35 +232,35 @@
                   <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" max="32767" attributes="0"/>
+                          <Component id="playerNickNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="playerNicknameValue" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="playerNumberOfGameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="playerNumberOfGameValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="playerNumberOfWinLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="playerNumberOfWinValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="competitorNicknameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="competitorNicknameValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="competitorNumberOfGameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="competitorNumberOfGameValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="competitorNumberOfWinLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="competitorNumberOfWinValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -272,33 +272,33 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="competitorCurrentPosition" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="scoreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="playerCurrentPosition" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="compretitorTurnJLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="yourTurnJLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="yourTurnJLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="190" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel1" max="32767" attributes="0"/>
+          <Component id="gameBoardPanel" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="playerNumberOfWinLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#x1ed1; v&#xe1;n th&#x1eaf;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="yourTurnJLabel3">
+    <Component class="javax.swing.JLabel" name="yourTurnJLabel">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -309,27 +309,27 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="playerNickNameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nickname"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="playerNumberOfGameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#x1ed1; v&#xe1;n ch&#x1a1;i"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="competitorNumberOfWinLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#x1ed1; v&#xe1;n th&#x1eaf;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel10">
+    <Component class="javax.swing.JLabel" name="competitorNicknameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nickname"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
+    <Component class="javax.swing.JLabel" name="competitorNumberOfGameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#x1ed1; v&#xe1;n ch&#x1a1;i"/>
       </Properties>
@@ -341,7 +341,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="roomMessageTextArea">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -352,44 +352,44 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel12">
+    <Component class="javax.swing.JLabel" name="playerNicknameValue">
       <Properties>
         <Property name="text" type="java.lang.String" value="{nickname}"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel13">
+    <Component class="javax.swing.JLabel" name="playerNumberOfGameValue">
       <Properties>
         <Property name="text" type="java.lang.String" value="{sovanchoi}"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel14">
+    <Component class="javax.swing.JLabel" name="playerNumberOfWinValue">
       <Properties>
         <Property name="text" type="java.lang.String" value="{sovanthang}"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel15">
+    <Component class="javax.swing.JLabel" name="competitorNicknameValue">
       <Properties>
         <Property name="text" type="java.lang.String" value="M&#xe1;y"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel16">
+    <Component class="javax.swing.JLabel" name="competitorNumberOfGameValue">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nhi&#x1ec1;u l&#x1eaf;m"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel17">
+    <Component class="javax.swing.JLabel" name="competitorNumberOfWinValue">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nhi&#x1ec1;u l&#x1eaf;m"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="gameBoardPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//for(int i=0; i&lt;5; i++){&#xa;//    for(int j=0;j&lt;5;j++){&#xa;//        jPanel1.add(button[i][j]);&#xa;//    }&#xa;//}"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//for(int i=0; i&lt;5; i++){&#xa;//    for(int j=0;j&lt;5;j++){&#xa;//        gameBoardPanel.add(button[i][j]);&#xa;//    }&#xa;//}"/>
       </AuxValues>
 
       <Layout>
@@ -417,7 +417,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="76" max="-2" attributes="0"/>
+                  <Component id="playerLabel" min="-2" pref="76" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -426,14 +426,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Component id="playerLabel" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="playerLabel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -458,19 +458,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Component id="competitorLabel" min="-2" pref="86" max="-2" attributes="0"/>
                   <EmptySpace pref="173" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel6" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="competitorLabel" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="competitorLabel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -492,19 +492,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel18" min="-2" pref="210" max="-2" attributes="0"/>
+                  <Component id="botLabel" min="-2" pref="210" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel18" alignment="0" pref="30" max="32767" attributes="0"/>
+              <Component id="botLabel" alignment="0" pref="30" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel18">
+        <Component class="javax.swing.JLabel" name="botLabel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -514,7 +514,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel20">
+    <Component class="javax.swing.JLabel" name="scoreLabel">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="T&#x1ec9; s&#x1ed1;:  0-0"/>
@@ -549,12 +549,12 @@
         <Property name="text" type="java.lang.String" value="M&#xe1;y"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="playerCurrentPosition">
       <Properties>
         <Property name="text" type="java.lang.String" value="x/o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="competitorCurrentPosition">
       <Properties>
         <Property name="text" type="java.lang.String" value="x/o"/>
       </Properties>
@@ -573,10 +573,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel22" pref="60" max="32767" attributes="0"/>
-                          <Component id="jLabel19" max="32767" attributes="0"/>
+                          <Component id="vsIcon" pref="60" max="32767" attributes="0"/>
+                          <Component id="playerButtonImage" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jButton3" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="competitorButtonImage" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
@@ -586,29 +586,29 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel19" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="playerButtonImage" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel22" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="vsIcon" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="competitorButtonImage" min="-2" pref="61" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel19">
+        <Component class="javax.swing.JLabel" name="playerButtonImage">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel22">
+        <Component class="javax.swing.JLabel" name="vsIcon">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="competitorButtonImage">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="competitorButtonImageActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

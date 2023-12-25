@@ -28,16 +28,16 @@
               <EmptySpace pref="163" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton2" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="loadingButtonImage" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="loadingIcon" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
-          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+          <Component id="pendingMessageLabel" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -45,11 +45,11 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" pref="90" max="-2" attributes="0"/>
+              <Component id="loadingIcon" min="-2" pref="90" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="pendingMessageLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="loadingButtonImage" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -66,10 +66,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
+              <Component id="roomNameLabel" alignment="1" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="210" max="32767" attributes="0"/>
-                  <Component id="jLabel4" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="roomPasswordLabel" min="-2" pref="180" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -78,16 +78,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="roomNameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="roomPasswordLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="roomNameLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
@@ -99,7 +99,7 @@
             <Property name="text" type="java.lang.String" value="Ph&#xf2;ng {}"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="roomPasswordLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="2"/>
@@ -112,7 +112,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="pendingMessageLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="2"/>
@@ -121,14 +121,14 @@
         <Property name="text" type="java.lang.String" value="&#x110;ang ch&#x1edd; ng&#x1b0;&#x1edd;i ch&#x1a1;i kh&#xe1;c v&#xe0;o ph&#xf2;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="loadingIcon">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="loadingButtonImage">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadingButtonImageActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
